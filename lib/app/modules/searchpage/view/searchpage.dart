@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +23,7 @@ class SearchPage extends GetView<SearchPageController> {
               alignment: Alignment.centerLeft,
               child: BigText(
                 text: 'Search',
-                size: Dimensions.font26,
+                size: Dimensions.font26*1.1,
                 color: AppColors.white,
               )),
         ),
@@ -131,13 +129,13 @@ class SearchPage extends GetView<SearchPageController> {
         ),
         Expanded(
             flex: 6,
-            child: GridView.builder(
-                itemCount: 6,
+            child: GetBuilder<SearchPageController>(builder: (_)=>GridView.builder(
+                itemCount: controller.categoriesList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: ((context, index) => SizedBox(
-                        // height: Dimensions.height10 * 14,
-                        // width: Dimensions.height10 * 14,
+                        height: Dimensions.height10 * 14,
+                        width: Dimensions.height10 * 14,
                         child: Card(
                       margin: EdgeInsets.all(Dimensions.height10),
                       shape: RoundedRectangleBorder(
@@ -149,32 +147,50 @@ class SearchPage extends GetView<SearchPageController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: CheckBoxWidget(
-                                    isChecked: controller.onCheck)),
+                            
                             Expanded(
                                 child: Image.network(
-                                    'https://en.pimg.jp/064/070/508/1/64070508.jpg')),
-                            BigText(
-                              text: 'Construction Worker',
-                              size: Dimensions.font20 / 1.5,
-                              fontWeight: FontWeight.bold,
+                                    controller.categoriesList[index]['icons'][0]['url'])),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: BigText(
+                                text: controller.categoriesList[index]['name'],
+                                size: Dimensions.font20 / 1.5,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.black,
+                              ),
                             )
                           ],
                         ),
                       ),
-                    ))))),
-        Expanded(
-          flex: 1,
+                    )))))),
+                    SizedBox(height: Dimensions.height20,),
+        SizedBox(
+          
           child: Container(
             width: Dimensions.text_field_width,
-            height: Dimensions.height40 * 1.1,
+            height: Dimensions.height40*1.5,
+
             // ignore: prefer_const_constructors
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Color(0xFF747985),
             ),
+            child: Row(children: [
+              Image.network('https://upload.wikimedia.org/wikipedia/commons/2/27/Street_-_Cixqo_Song_Art_Cover.jpg'),
+              SizedBox(width: Dimensions.width10,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BigText(text: 'After Hours', size: Dimensions.font20,),
+                  BigText(text: 'Weekend', size: Dimensions.font15),
+
+                ],
+              ),
+              SizedBox(width: Dimensions.width40*2.7,),
+              Icon(Icons.heart_broken, color: Colors.pink,size: Dimensions.iconSize24*1.2,),
+              Icon(Icons.pause, color: AppColors.white,size: Dimensions.iconSize24*1.2)
+            ]),
           ),
         )
       ],

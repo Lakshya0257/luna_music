@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SearchPageController extends GetxController{
@@ -21,4 +24,18 @@ class SearchPageController extends GetxController{
   }
 
   final TextEditingController bankNameController = TextEditingController();
+  @override
+  void onInit()async{
+    super.onInit();
+    await categories();
+   
+  }
+  List categoriesList=[];
+ 
+  Future<void> categories()async {
+    final String response=await rootBundle.loadString('assets/json_dumy_data/categories.json');
+    final data=await jsonDecode(response);
+    categoriesList=data['categories']['items'];
+    update();
+  }
 }

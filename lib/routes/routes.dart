@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
+import 'package:luna/app/modules/homepage/controller/homepage_controller.dart';
+import 'package:luna/app/modules/playlist/playlist.dart';
 import 'package:luna/app/modules/searchpage/binding/searchbinding.dart';
 import 'package:luna/app/modules/searchpage/view/searchpage.dart';
+import 'package:luna/app/modules/track/view/track.dart';
 
 import '../app/modules/homepage/binding/homepage_binding.dart';
 import '../app/modules/homepage/view/first_tab.dart';
@@ -27,10 +30,17 @@ class AppRoutes {
       binding: HomePageBinding(),
     ),
     GetPage(
+      name: Profile.route,
+      page: () => const Profile(),
+      binding: HomePageBinding(),
+    ),
+    GetPage(
       name: SearchPage.route,
       page: () => const SearchPage(),
       binding: SearchPageBinding(),
     ),
+    GetPage(name: PlaylistPage.route, page: (() => PlaylistPage()),binding: HomePageBinding())
+    
     // GetPage(
     //   name: FirstPage.route,
     //   page: () => FirstPage(),

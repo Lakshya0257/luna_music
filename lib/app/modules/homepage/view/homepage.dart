@@ -17,10 +17,10 @@ class HomePage extends GetView<HomePageController> {
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(
-            color: AppColors.black,
-            // image: DecorationImage(
-            //     image: AssetImage('assets/images/music_app_bckgrnd_img.png'),
-            //     fit: BoxFit.cover),
+            // color: AppColors.black,
+            image: DecorationImage(
+                image: AssetImage('assets/images/music_app_bckgrnd_img.png'),
+                fit: BoxFit.cover),
           ),
           child: SafeArea(
             child: Padding(padding:EdgeInsets.symmetric(horizontal: 20),
